@@ -30,5 +30,5 @@ def predict(img, model_path='./model/last.pt', save_img=False):
     return cleaned_result
 
 if __name__ == '__main__':
-    result = predict("test/58.jpg", save_img=True)
+    result = predict("test/58.jpg", save_img=False)
     print(result)  # 打印紧凑格式的 JSON 字符串
