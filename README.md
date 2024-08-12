@@ -69,7 +69,7 @@ pip install -r requirements.txt
 python start.py
 ```
 
-### Windows 系统
+### Linux 系统
 ```bash
 python3 ./start.py
 ```
