@@ -1,13 +1,13 @@
 # classify_leaves  
 ## 本程序是对176 个类别的叶子进行分类识别  
 
-framework:  
+## framework:  
     Flask  
   
-model:  
+## model:  
     YOLOv8  ResNet50  
   
-Install：
+## Install：
     
     Win:
         conda create -n cl python=3.8
@@ -19,7 +19,7 @@ Install：
         source .venv/bin/activate
         pip install -r requirements.txt
 
-run:
+## run:
     
     Win:
         start.py
@@ -27,7 +27,7 @@ run:
     Linux:
         python3 ./start.py
 
-dataset:
+## dataset:
 【Kaggle竞赛树叶分类1】https://www.kaggle.com/c/classify-leaves  
 任务是预测叶子图像的类别。  
 该数据集包含 176 个类别、18353 张训练图像、8800 张测试图像。每个类别至少有 50 张图像用于训练。  
@@ -52,11 +52,11 @@ classify_leaves
     |    |__divide.py  #将数据集划分为训练集和测试集  
     |    |__convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集  
     |  
-    |__test #测试  
-    |    |__"test.jpg"   
+    |__test  #测试  
+    |    |__ test.jpg   
     |  
     |__uplodas  #上传的图片  
-    |      |__"update.jpg"  
+    |      |__update.jpg  
     |  
     |__requirements.txt  
     |  
