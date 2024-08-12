@@ -50,7 +50,7 @@ classify_leaves
  |  
  |__prepossess   #预处理函数  
  | |__divide.py  #将数据集划分为训练集和测试集  
- | __convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集  
+ | |__convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集  
  |  
  |__test  #测试  
  | |__ test.jpg  
