@@ -53,14 +53,16 @@ def predict(model_path, img_path, labelmap_path):
     value = labelmap.get(pred_i)
     if value is not None:
         prob = "{:.2f}".format(top5_probabilities[0][0])
-        print(f"该叶片预测为：{value}, 准确概率为{prob}%")
+        message = (f"该叶片预测为：{value}, 准确概率为{prob}%")
+        return message
     else:
         print(f"键'{pred}'不存在于字典中")
 
 
 if __name__ == '__main__':
-    model_path = './new_model.pth'
+    model_path = './model/ResNet50_model.pth'
     img_path = './images/1.jpg'
-    labelmap_path = './labelmap.json'
+    labelmap_path = './ResNet_labelmap.json'
 
-    predict(model_path, img_path, labelmap_path)
+    res = predict(model_path, img_path, labelmap_path)
+

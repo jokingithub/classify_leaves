@@ -1,4 +1,6 @@
 from ultralytics import YOLO
+
+
 def predict(img,model_path='./model./last.pt',save_img=False):
     '''Predict'''
     # input: image, model
