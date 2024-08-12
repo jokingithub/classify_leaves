@@ -31,7 +31,7 @@ def predict(img_path, model_path='./model/ResNet50_model.pth',
     model = timm.create_model('resnet50d', pretrained=False)
     nums = model.fc.in_features
     model.fc = nn.Linear(nums, 176)  # 修改输出层以适应176个类别
-    model.load_state_dict(torch.load(model_path, map_location=device))  # 加载模型权重
+    model.load_state_dict(torch.load(model_path, map_location=device,weights_only=True))  # 加载模型权重
 
     model.eval()  # 设置为评估模式
     model.to(device)  # 转移到指定设备
@@ -50,8 +50,8 @@ def predict(img_path, model_path='./model/ResNet50_model.pth',
     # 生成一致格式的结果
     result = {
         "name": value,
-        "class": pred_i,
-        "confidence": prob
+        "class": int(pred_i),
+        "confidence": float(prob)
     }
 
     return json.dumps([result])  # 返回格式化的 JSON 字符串
