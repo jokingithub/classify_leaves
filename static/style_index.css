@@ -63,7 +63,7 @@ nav a:hover {
 
 .carousel-title {
     position: absolute;
-    top: 18%; /* 调整标题距离顶部的距离 */
+    top: 120px; /* 调整标题距离顶部的距离 */
     width: 100%;
     text-align: center;
     font-size: 10vw; /* 设置大字标题的字体大小 */
@@ -88,7 +88,7 @@ nav a:hover {
 /* 内容区域样式 */
 .content {
     position: absolute;
-    top: 75%; /* 调整内容区域的位置，距离轮播区域底部 */
+    top: 685px; /* 调整内容区域的位置，距离轮播区域底部 */
     left: 50%;
     width: 90%;
     max-width: 900px; /* 增加最大宽度 */
