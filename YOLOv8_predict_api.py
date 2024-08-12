@@ -15,6 +15,7 @@ def predict(img,model_path='./model./last.pt',save_img=False):
         rs = result.tojson()
     return rs
 
+
 if __name__ == '__main__':
     result = predict("test/58.jpg")
     print(result)
