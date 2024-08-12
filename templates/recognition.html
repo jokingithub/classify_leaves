@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树叶识别</title>
+    <link rel="stylesheet" href="/static/style_index.css"> <!-- 确保路径正确 -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>树叶识别</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="/index.html">首页</a> <!-- 使用 Flask 路由 -->
+            <a href="#">关于</a>
+            <a href="/recognition.html">识别</a>
+            <a href="#">联系</a>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <h2>请上传树叶图片进行识别</h2>
+        <div class="upload-section">
+            <input type="file" id="leafImage" accept="image/*">
+            <button id="submitBtn">提交</button>
+        </div>
+
+        <div id="result" class="result-section">
+            <h3>预测结果：</h3>
+            <p id="prediction"></p>
+            <img id="uploadedImage" src="" alt="上传的图片" style="max-width: 100%; height: auto; display: none;">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 树叶识别系统。版权所有。</p>
+    </footer>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            var fileInput = document.getElementById('leafImage');
+            var file = fileInput.files[0];
+
+            if (file) {
+                // 在页面上显示上传的图片
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imgElement = document.getElementById('uploadedImage');
+                    imgElement.src = e.target.result;
+                    imgElement.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+
+                var formData = new FormData();
+                formData.append('leafImage', file);
+
+                // 向服务器发送图像文件并获取预测结果
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('prediction').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('prediction').innerText = '上传失败：' + error;
+                    console.error('Error:', error);
+                });
+            } else {
+                alert("请先选择一张图片！");
+            }
+        });
+    </script>
+</body>
+</html>
