@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, abort, jsonify, make_response
-import YOLOv8_predict_api
+import YOLOv8_predict_api as YOLO
+import ResNet50_Predict as Res
 from werkzeug.utils import secure_filename
 import os
 
@@ -37,7 +38,7 @@ def upload():
         file.save(filepath)
 
         # 调用YOLOv8模型进行预测
-        result = YOLOv8_predict_api.predict(filepath)
+        result = YOLO.predict(filepath)
         
         # 假设result是JSON类型的结果
         return make_response(result)
