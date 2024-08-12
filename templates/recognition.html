@@ -35,6 +35,17 @@
             <img id="uploadedImage" src="" alt="上传的图片" style="max-width: 100%; height: auto; display: none;">
         </div>
     </div>
+    
+    <div class="upload-section">
+        <label for="modelSelect">选择模型：</label>
+        <select id="modelSelect">
+            <option value="YOLO">YOLOv8</option>
+            <option value="ResNet">ResNet50</option>
+        </select>
+        <input type="file" id="leafImage" accept="image/*">
+        <button id="submitBtn">提交</button>
+    </div>
+    
 
     <footer>
         <p>&copy; 2024 树叶识别系统 版权所有</p>
