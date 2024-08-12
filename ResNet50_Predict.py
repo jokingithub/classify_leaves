@@ -62,7 +62,11 @@ def predict(model_path, img_path, labelmap_path):
 if __name__ == '__main__':
     model_path = './model/ResNet50_model.pth'
     img_path = './test/58.jpg'
+<<<<<<< Updated upstream
     labelmap_path = './labelmap.json'
+=======
+    labelmap_path = './ResNet_labelmap.json'
+>>>>>>> Stashed changes
 
     res = predict(model_path, img_path, labelmap_path)
     print(res)
