@@ -27,7 +27,7 @@ classify_leaves
  |__uplodas  #上传的图片  
  | |__update.jpg  
  |  
- |__train
+ |__train  
  | |__yolo_train.py #YOLO训练函数
  |  
  |__requirements.txt  
