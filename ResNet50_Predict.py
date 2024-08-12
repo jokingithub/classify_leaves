@@ -54,9 +54,9 @@ def predict(model_path, img_path, labelmap_path):
     if value is not None:
         prob = "{:.2f}".format(top5_probabilities[0][0])
         message = (f"该叶片预测为：{value}, 准确概率为{prob}%")
-        return message.tojson()
+        return message
     else:
-        print("识别失败！请重新上传图片！")
+        print(f"键'{pred}'不存在于字典中")
 
 
 if __name__ == '__main__':
