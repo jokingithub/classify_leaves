@@ -61,8 +61,6 @@ pip install -r requirements.txt
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pip install flask
-pip install ultralytics
 ```
 
 ## 项目运行
@@ -71,7 +69,7 @@ pip install ultralytics
 python start.py
 ```
 
-### Windows 系统
+### Linux 系统
 ```bash
 python3 ./start.py
 ```
