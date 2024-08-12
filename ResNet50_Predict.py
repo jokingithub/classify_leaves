@@ -34,7 +34,8 @@ def predict(model_path, img_path, labelmap_path):
     nums = model.fc.in_features  # 获取最后一层的输入特征数
     model.fc = nn.Linear(nums, 176)  # 更改输出层的大小
 
-    model.load_state_dict(torch.load(model_path, weights_only=True))
+    model.load_state_dict(torch.load(model_path, weights_only=False,
+                                      map_location=(torch.device('gpu') if torch.cuda.is_available() else torch.device('cpu'))))
 
     model.eval()
     model.cuda()
@@ -53,16 +54,14 @@ def predict(model_path, img_path, labelmap_path):
     value = labelmap.get(pred_i)
     if value is not None:
         prob = "{:.2f}".format(top5_probabilities[0][0])
-        message = (f"该叶片预测为：{value}, 准确概率为{prob}%")
-        return message
+        print(f"该叶片预测为：{value}, 准确概率为{prob}%")
     else:
         print(f"键'{pred}'不存在于字典中")
 
 
 if __name__ == '__main__':
     model_path = './model/ResNet50_model.pth'
-    img_path = './images/1.jpg'
-    labelmap_path = './ResNet_labelmap.json'
+    img_path = './test/58.jpg'
+    labelmap_path = './labelmap.json'
 
-    res = predict(model_path, img_path, labelmap_path)
-
+    predict(model_path, img_path, labelmap_path)
