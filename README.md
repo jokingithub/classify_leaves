@@ -73,17 +73,17 @@ python3 ./start.py
 ```
 
 ## 目录说明:
-model: 存储训练好的模型权重文件。
-static: 包含静态资源，如 CSS 样式文件。
-templates: 存储 HTML 模板文件。
-prepossess: 数据预处理相关的 Python 脚本。
-test: 测试图像文件夹。
-uploads: 用户上传图像的存储目录。
-requirements.txt: 项目依赖的 Python 库列表。
-YOLOv8_predict_api.py: YOLOv8 模型的预测接口。
-ResNet50_Predict.py: ResNet50 模型的预测接口。
-ResNet_labelmap.json: ResNet50 模型的标签映射文件。
-start.py: 项目的启动脚本。
+model: 存储训练好的模型权重文件。  
+static: 包含静态资源，如 CSS 样式文件。  
+templates: 存储 HTML 模板文件。  
+prepossess: 数据预处理相关的 Python 脚本。  
+test: 测试图像文件夹。  
+uploads: 用户上传图像的存储目录。  
+requirements.txt: 项目依赖的 Python 库列表。  
+YOLOv8_predict_api.py: YOLOv8 模型的预测接口。  
+ResNet50_Predict.py: ResNet50 模型的预测接口。  
+ResNet_labelmap.json: ResNet50 模型的标签映射文件。  
+start.py: 项目的启动脚本。  
   
 ## 数据集来源
 该项目的数据集来源于 Kaggle 竞赛树叶分类。任务是预测叶子图像的类别。数据集包含 176 个类别、18353 张训练图像、8800 张测试图像。评估指标为分类准确度。
