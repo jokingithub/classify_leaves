@@ -35,38 +35,38 @@
 
   
 
-classify_leaves< br >
-    |__model    #模型的权重文件< br > 
-    |    |__best.pt #YOLO训练中效果最好的权重< br >
-    |    |__last.pt #YOLO训练中最终的权重< br >
-    |    |__ResNet50_model.pth  #ResNet模型文件< br >
-    |< br >
-    |__static< br >
-    |     |__style_index.css    #css样式< br >
-    |< br >
-    |__templates    #模板< br >
-    |       |__index.html   #主页< br >
-    |       |__recognition.html #预测页面< br >
-    |< br >
-    |__prepossess   #预处理函数< br >
-    |    |__divide.py  #将数据集划分为训练集和测试集< br >
-    |    |__convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集< br >
-    |< br >
-    |__test  #测试< br >
-    |     |__ test.jpg< br >
-    |< br >
-    |__uplodas  #上传的图片< br > 
-    |     |__update.jpg< br >
-    |< br >
-    |__requirements.txt< br >
-    |< br >
-    |__YOLOv8_predict_api.py    #YOLO预测函数< br >
-    |< br >
-    |__ResNet50_Predict.py  #ResNet50预测函数< br >
-    |< br >
-    |__ResNet_labelmap.json #ResNet标签字典< br >
-    |< br >
-    |__start.py #启动函数< br >
-    |< br >
-    |__README.md< br >
+classify_leaves  
+    |__model    #模型的权重文件  
+    |    |__best.pt #YOLO训练中效果最好的权重  
+    |    |__last.pt #YOLO训练中最终的权重  
+    |    |__ResNet50_model.pth  #ResNet模型文件  
+    |  
+    |__static  
+    |     |__style_index.css    #css样式  
+    |  
+    |__templates    #模板  
+    |       |__index.html   #主页  
+    |       |__recognition.html #预测页面  
+    |  
+    |__prepossess   #预处理函数  
+    |    |__divide.py  #将数据集划分为训练集和测试集  
+    |    |__convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集  
+    |  
+    |__test  #测试  
+    |     |__ test.jpg  
+    |  
+    |__uplodas  #上传的图片  
+    |     |__update.jpg  
+    |  
+    |__requirements.txt  
+    |  
+    |__YOLOv8_predict_api.py    #YOLO预测函数  
+    |  
+    |__ResNet50_Predict.py  #ResNet50预测函数  
+    |  
+    |__ResNet_labelmap.json #ResNet标签字典  
+    |  
+    |__start.py #启动函数  
+    |  
+    |__README.md  
     
