@@ -56,7 +56,7 @@ def predict(model_path, img_path, labelmap_path):
         message = (f"该叶片预测为：{value}, 准确概率为{prob}%")
         return message
     else:
-        print(f"键'{pred}'不存在于字典中")
+        print("识别失败，请重新上传图片！")
 
 
 if __name__ == '__main__':
