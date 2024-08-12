@@ -54,7 +54,7 @@ conda activate cl
 pip install -r requirements.txt
 ```
 
-### Windows 系统
+### Linux 系统
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
