@@ -25,12 +25,13 @@ def load_labelmap(labelmap_path):
     with open(labelmap_path, 'r') as f:
         return json.load(f)
 
-def predict(model_path, img_path, labelmap, device=device):
+def predict(img_path, model_path='./model/ResNet50_model.pth', 
+             labelmap=load_labelmap('./model/ResNet_labelmap.json'), device=device,weight_only = True):
     # 创建模型并加载预训练权重
     model = timm.create_model('resnet50d', pretrained=False)
     nums = model.fc.in_features
     model.fc = nn.Linear(nums, 176)  # 修改输出层以适应176个类别
-    model.load_state_dict(torch.load(model_path, map_location=device, weights_only=True))  # 加载模型权重
+    model.load_state_dict(torch.load(model_path, map_location=device, weights_only=False))  # 加载模型权重
 
     model.eval()  # 设置为评估模式
     model.to(device)  # 转移到指定设备
@@ -53,10 +54,6 @@ def predict(model_path, img_path, labelmap, device=device):
 
 
 if __name__ == '__main__':
-    model_path = './model/ResNet50_model.pth'
     img_path = './test/58.jpg'
-    labelmap_path = './ResNet_labelmap.json'
-
-    labelmap = load_labelmap(labelmap_path)  # 加载标签映射
-    res = predict(model_path, img_path, labelmap)  # 进行预测
+    res = predict( img_path)  # 进行预测
     print(f"res: {res}")  # 打印预测结果
