@@ -8,6 +8,7 @@ classify_leaves
  | |__best.pt #YOLO训练中效果最好的权重  
  | |__last.pt #YOLO训练中最终的权重  
  | |__ResNet50_model.pth  #ResNet模型文件  
+ | |__ResNet_labelmap.json #ResNet标签字典 
  |  
  |__static  
  | |__style_index.css    #css样式  
@@ -26,13 +27,14 @@ classify_leaves
  |__uplodas  #上传的图片  
  | |__update.jpg  
  |  
+ |__train
+ | |__yolo_train.py #YOLO训练函数
+ |  
  |__requirements.txt  
  |  
  |__YOLOv8_predict_api.py    #YOLO预测函数  
  |  
  |__ResNet50_Predict.py  #ResNet50预测函数  
- |  
- |__ResNet_labelmap.json #ResNet标签字典  
  |  
  |__start.py #启动函数  
  |  
@@ -78,11 +80,11 @@ static: 包含静态资源，如 CSS 样式文件。
 templates: 存储 HTML 模板文件。  
 prepossess: 数据预处理相关的 Python 脚本。  
 test: 测试图像文件夹。  
+train: 模型训练函数。  
 uploads: 用户上传图像的存储目录。  
 requirements.txt: 项目依赖的 Python 库列表。  
 YOLOv8_predict_api.py: YOLOv8 模型的预测接口。  
 ResNet50_Predict.py: ResNet50 模型的预测接口。  
-ResNet_labelmap.json: ResNet50 模型的标签映射文件。  
 start.py: 项目的启动脚本。  
   
 ## 数据集来源
