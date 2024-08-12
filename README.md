@@ -4,7 +4,7 @@ framework:
     Flask
   
 model:  
-    YOLOv8  
+    YOLOv8  ResNet50  
   
 Install：
     
