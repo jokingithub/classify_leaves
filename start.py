@@ -32,7 +32,7 @@ def upload():
         return abort(400, description="No file part")
     
     file = request.files['leafImage']
-    model = request.form.get('model', 'YOLO')  # 默认模型为 YOLO
+    model = request.form.get('model')  # 默认模型为 YOLO
 
     if file.filename == '':
         return abort(400, description="No selected file")

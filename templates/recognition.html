@@ -26,6 +26,13 @@
         <h2>请上传树叶图片进行识别</h2>
         <div class="upload-section">
             <input type="file" id="leafImage" accept="image/*">
+
+            <label for='model'>选择模型：</label>
+            <select id='model'>
+                <option value="YOLO">YOLOv8</option>
+                <option value="ResNet">ResNet50</option>
+            </select>
+
             <button id="submitBtn">提交</button>
         </div>
 
@@ -36,15 +43,7 @@
         </div>
     </div>
     
-    <div class="upload-section">
-        <label for="modelSelect">选择模型：</label>
-        <select id="modelSelect">
-            <option value="YOLO">YOLOv8</option>
-            <option value="ResNet">ResNet50</option>
-        </select>
-        <input type="file" id="leafImage" accept="image/*">
-        <button id="submitBtn">提交</button>
-    </div>
+
     
 
     <footer>
@@ -54,6 +53,7 @@
     <script>
         document.getElementById('submitBtn').addEventListener('click', function() {
             var fileInput = document.getElementById('leafImage');
+            var modelInput = document.getElementById('model');
             var file = fileInput.files[0];
 
             if (file) {
@@ -68,6 +68,7 @@
 
                 var formData = new FormData();
                 formData.append('leafImage', file);
+                formData.append('model',modelInput.value);
 
                 // 向服务器发送图像文件并获取预测结果
                 fetch('/upload', {
