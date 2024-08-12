@@ -1,5 +1,5 @@
 # classify_leaves  
-## 本项目旨在通过深度学习模型对 176 个类别的叶子进行分类识别。该项目使用 Flask 作为 Web 框架，采用 YOLOv8 和 ResNet50 作为分类模型，并使用来自 Kaggle 竞赛的数据集进行训练和测试。 
+#### 本项目旨在通过深度学习模型对 176 个类别的叶子进行分类识别。该项目使用 Flask 作为 Web 框架，采用 YOLOv8 和 ResNet50 作为分类模型，并使用来自 Kaggle 竞赛的数据集进行训练和测试。 
 
 ## 项目结构
 
@@ -21,7 +21,7 @@ classify_leaves
  | |__convert_to_yolo.py  #将原数据集转换为适合YOLO的数据集  
  |  
  |__test  #测试  
- | |__ test.jpg  
+ | |_ test.jpg  
  |  
  |__uplodas  #上传的图片  
  | |__update.jpg  
