@@ -8,9 +8,10 @@ body {
 
 /* 头部样式 */
 header {
-    background-color: #4CAF50;
+    /*background-color: #4CAF50;*/
+    background-color: #09743c;
     color: white;
-    padding: 10px 0;
+    padding: 1px 0;
     text-align: center;
     position: relative; /* 允许导航栏在其上方 */
     z-index: 10; /* 确保在轮播区域上方 */
@@ -134,7 +135,7 @@ nav a:hover {
     color: white;
     padding: 12px 24px; /* 增加内边距 */
     border: none;
-    border-radius: 5px;
+    border-radius: 22px;
     cursor: pointer;
     margin-top: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

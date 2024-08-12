@@ -1,0 +1,197 @@
+/* 基本样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* 头部样式 */
+header {
+    background-color: #09743c;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* 导航栏样式 */
+nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #333;
+    position: relative;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    flex: 1;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+/* 识别图片主体 */  
+.main_content {  
+    background-color: #ffffff; /* 背景色设置为白色以提升对比度 */
+    display: flex;
+    justify-content: flex-end;  /* 确保内容靠右对齐 */
+    padding: 20px;
+    gap: 15px; /* 为按钮间添加统一的间隔 */
+}
+
+/* 按钮容器样式 */
+.img_select_btn, .model_select_btn, .submit_btn {
+    display: flex;
+    align-items: center;
+    background-color: #4CAF50; /* 使用相同的背景颜色 */
+    border: none;
+    border-radius: 22px; /* 圆角 */
+    padding: 10px 15px; /* 内边距 */
+    color: white;
+    cursor: pointer;    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 平滑的背景色和缩放过渡 */
+    font-size: 1rem;
+}
+
+.img_select_btn:hover, .model_select_btn:hover, .submit_btn:hover {
+    background-color: #45a049; /* 悬停时的背景色 */
+    transform: scale(1.05); /* 悬停时放大 */
+}
+
+.img_select_btn label, .model_select_btn label {
+    margin-right: 10px; /* 标签与按钮之间的间距 */
+}
+
+/* 隐藏原生的 input 和 select */
+.img_select_btn input[type="file"], 
+.model_select_btn select {
+    border: none;
+    background: transparent;
+    padding: 5px;
+    cursor: pointer;
+    /* 确保 label 的宽度符合按钮 */
+    width: 100%;
+}
+
+/* 提交按钮样式 */
+.submit_btn button {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;    
+    box-shadow: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: inherit;
+}
+
+/* 提交按钮悬停效果 */
+.submit_btn button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* 结果区域 */
+.result-section {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.result-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 底部样式 */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+/* 自定义下拉框样式 */
+.model_select_btn {
+    position: relative;
+}
+
+.model_select_btn select {
+    background-color: #ffffff; /* 背景颜色 */
+    border: 1px solid #ccc; /* 边框颜色 */
+    border-radius: 5px; /* 边框圆角 */
+    padding: 10px 35px 10px 15px; /* 内边距 */
+    font-size: 1rem;
+    color: #333; /* 文字颜色 */
+    cursor: pointer; /* 光标样式 */
+    appearance: none; /* 隐藏默认的下拉箭头 */
+    -webkit-appearance: none; /* Safari */
+    -moz-appearance: none; /* Firefox */
+}
+
+.model_select_btn::after {
+    content: '▼'; /* 下拉箭头 */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #333;
+    pointer-events: none; /* 确保箭头不会干扰选择 */
+}
+
+/* 媒体查询 */
+@media (max-width: 1536px) {
+    .main_content {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .main_content {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main_content {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main_content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .img_select_btn, .model_select_btn, .submit_btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+
+/* 可访问性增强 */
+nav a:focus, .submit_btn button:focus {
+    outline: 3px solid #4CAF50;
+    outline-offset: 2px;
+}
