@@ -15,7 +15,7 @@ def preprocess_img(img_path):
         transforms.ToTensor(),  # 转换为张量
         transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),  # 归一化
     ])
-    input_image = Image.open(img_path)  # 打开图像
+    input_image = Image.open(img_path).convert("RGB")  # 确保图像是RGB格式
     input_tensor = transform_test(input_image)  # 进行转换
     input_batch = input_tensor.unsqueeze(0).to(device)  # 添加批次维度并转移到指定设备
     return input_batch
@@ -26,12 +26,12 @@ def load_labelmap(labelmap_path):
         return json.load(f)
 
 def predict(img_path, model_path='./model/ResNet50_model.pth', 
-             labelmap=load_labelmap('./model/ResNet_labelmap.json'), device=device,weight_only = True):
+             labelmap_path='./model/ResNet_labelmap.json', device=device):
     # 创建模型并加载预训练权重
     model = timm.create_model('resnet50d', pretrained=False)
     nums = model.fc.in_features
     model.fc = nn.Linear(nums, 176)  # 修改输出层以适应176个类别
-    model.load_state_dict(torch.load(model_path, map_location=device, weights_only=False))  # 加载模型权重
+    model.load_state_dict(torch.load(model_path, map_location=device,weights_only=True))  # 加载模型权重
 
     model.eval()  # 设置为评估模式
     model.to(device)  # 转移到指定设备
@@ -43,17 +43,20 @@ def predict(img_path, model_path='./model/ResNet50_model.pth',
         pred = torch.argmax(logit, dim=1).cpu().numpy()  # 获取最终预测的类别
         pred_i = str(pred[0])  # 转换为字符串格式
 
-    value = labelmap.get(pred_i)  # 从标签映射中获取标签名称
-    prob = "{:.2f}".format(top5_probabilities[0][0])  # 格式化置信度
-    r = {
-        "name": value,
-        "class": pred_i,
-        "confidence": prob
-    }
-    return json.dumps(r)  # 返回预测结果的JSON格式
+    labelmap = load_labelmap(labelmap_path)  # 从文件加载标签映射
+    value = labelmap.get(pred_i, "Unknown")  # 从标签映射中获取标签名称，如果找不到则使用"Unknown"
+    prob = "{:.2f}".format(top5_probabilities[0][0].item())  # 格式化置信度为两位小数
 
+    # 生成一致格式的结果
+    result = {
+        "name": value,
+        "class": int(pred_i),
+        "confidence": float(prob)
+    }
+
+    return json.dumps([result])  # 返回格式化的 JSON 字符串
 
 if __name__ == '__main__':
     img_path = './test/58.jpg'
-    res = predict( img_path)  # 进行预测
-    print(f"res: {res}")  # 打印预测结果
+    res = predict(img_path)  # 进行预测
+    print(res)  # 打印预测结果
