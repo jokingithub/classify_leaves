@@ -77,7 +77,16 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('prediction').innerText = JSON.stringify(data, null, 2);
+                     // 解析并显示结果
+                    var resultElement = document.getElementById('prediction');
+                    var parsedData = JSON.parse(data);
+                    
+                    if (Array.isArray(parsedData) && parsedData.length > 0) {
+                        var result = parsedData[0];
+                        resultElement.innerHTML = `<strong>类别：</strong>${result.name}<br><strong>置信度：</strong>${(result.confidence * 100).toFixed(2)}%`;
+                    } else {
+                        resultElement.innerText = '没有检测到结果。';
+                    }
                 })
                 .catch(error => {
                     document.getElementById('prediction').innerText = '上传失败：' + error;
