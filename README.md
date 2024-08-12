@@ -28,7 +28,7 @@ classify_leaves
  | |__update.jpg  
  |  
  |__train  
- | |__yolo_train.py #YOLO训练函数
+ | |__yolo_train.py #YOLO训练函数  
  |  
  |__requirements.txt  
  |  
