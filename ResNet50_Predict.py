@@ -56,7 +56,7 @@ def predict(model_path, img_path, labelmap_path):
         prob = "{:.2f}".format(top5_probabilities[0][0])
         print(f"该叶片预测为：{value}, 准确概率为{prob}%")
     else:
-        print(f"键'{pred}'不存在于字典中")
+        print("识别失败，请重新上传图片！")
 
 
 if __name__ == '__main__':
@@ -64,4 +64,5 @@ if __name__ == '__main__':
     img_path = './test/58.jpg'
     labelmap_path = './labelmap.json'
 
-    predict(model_path, img_path, labelmap_path)
+    res = predict(model_path, img_path, labelmap_path)
+    print(res)
