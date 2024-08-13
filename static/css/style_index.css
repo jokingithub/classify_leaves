@@ -92,7 +92,7 @@ nav a:hover {
     top: 685px; /* 调整内容区域的位置，距离轮播区域底部 */
     left: 50%;
     width: 90%;
-    max-width: 900px; /* 增加最大宽度 */
+    max-width: 1000px; /* 增加最大宽度 */
     height: auto;
     padding: 30px; /* 增加内边距 */
     box-sizing: border-box;
