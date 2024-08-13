@@ -5,6 +5,7 @@ import ResNet50_Predict as Res
 from werkzeug.utils import secure_filename
 import os
 import uuid
+import json
 
 app = Flask(__name__,
             static_folder='static',
@@ -26,6 +27,7 @@ class LeafCategory(DB.Model):
 
     def __repr__(self):
         return f'<LeafCategory {self.category_name}>'
+
 
 # 设置允许上传的文件类型
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -56,13 +58,13 @@ def contact():
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'leafImage' not in request.files:
-        return abort(400, description="No file part")
+        return jsonify({'error': 'No file part'}), 400
     
     file = request.files['leafImage']
     model = request.form.get('model')  # 默认模型为 YOLO
 
     if file.filename == '':
-        return abort(400, description="No selected file")
+        return jsonify({'error': 'No selected file'}), 400
     
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -74,32 +76,51 @@ def upload():
         try:
             # 根据选择的模型进行预测
             if model == 'YOLO':
-                result = YOLO.predict(filepath)
+                res_obj = json.loads(YOLO.predict(filepath))
             elif model == 'ResNet':
-                result = Res.predict(filepath)
+                res_obj = json.loads(Res.predict(filepath))
             else:
-                return abort(400, description="不支持的模型类型")
-            
+                return jsonify({'error': '不支持的模型类型'}), 400
+
+            print(res_obj)
+            # 解析结果
+            if isinstance(res_obj, list) and len(res_obj) > 0:
+                res_dict = res_obj[0]
+            else:
+                return jsonify({'error': '预测结果格式无效'}), 400
+            print(res_dict)
             # 查询类别介绍信息
-            if 'name' in result:
-                category_name = result['name']
+            if 'name' in res_dict:
+                category_name = res_dict['name']
+                """
+                数据库部分
                 category_info = LeafCategory.query.filter_by(category_name=category_name).first()
                 if category_info:
-                    result['chinese_name'] = category_info.chinese_name
-                    result['description'] = category_info.description
-
+                    res_dict['chinese_name'] = category_info.chinese_name
+                    res_dict['description'] = category_info.description
                 else:
-                    result['chinese_name'] = "未定义"
-                    result['description'] = "没有找到该类别的描述信息"
+                    res_dict['chinese_name'] = "未定义"
+                    res_dict['description'] = "没有找到该类别的描述信息"
+                """
+                res_dict['chinese_name'] = "未定义"
+                res_dict['description'] = "没有找到该类别的描述信息"
 
-            
             # 返回结果
-            return jsonify(result)
+            return jsonify(res_dict)
         except Exception as e:
-            return abort(500, description=f"模型预测失败: {str(e)}")
+            return jsonify({'error': f'模型预测失败: {str(e)}'}), 500
     
-    return abort(400, description="不支持的文件类型")
+    return jsonify({'error': '不支持的文件类型'}), 400
+
+# 错误处理器
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({'error': str(error)}), 400
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({'error': '服务器内部错误'}), 500
 
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=False, host='0.0.0.0')
+    app.run(port=8080, debug=True, host='0.0.0.0')

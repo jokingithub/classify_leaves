@@ -23,7 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听开始识别按钮的点击事件
     submitButton.addEventListener('click', function() {
         var file = fileInput.files[0];
-        var model = document.querySelector('.custom-dropdown .selected-option').textContent;
+        var modelText = selectedOption.textContent.trim(); // 获取选中的文本内容
+        var model;
+
+        // 将选中的文本内容转换为服务器端识别的模型名称
+        if (modelText === 'YOLOv8') {
+            model = 'YOLO';
+        } else if (modelText === 'ResNet50') {
+            model = 'ResNet';
+        } else {
+            alert('请选择有效的模型！');
+            return;
+        }
+        console.log(model)
 
         if (!file) {
             alert('请先选择一张图片！');
@@ -44,7 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: formData
                 });
             })
-            .then(response => response.json())
+            .then(response => {
+                // 检查响应内容类型
+                if (response.ok) {
+                    return response.json(); // 尝试解析 JSON
+                } else {
+                    return response.text().then(text => {
+                        throw new Error('服务器错误: ' + text);
+                    });
+                }
+            })
             .then(data => {
                 // 解析并显示结果
                 console.log(data)
