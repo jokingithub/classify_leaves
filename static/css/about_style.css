@@ -82,79 +82,8 @@ nav a:hover {
     transition: opacity 1s ease-in-out;
 }
 
-.carousel img.hidden {
-    opacity: 0;
-}
 
-/* 内容区域样式 */
-.content {
-    position: absolute;
-    top: 685px; /* 调整内容区域的位置，距离轮播区域底部 */
-    left: 50%;
-    width: 90%;
-    max-width: 1000px; /* 增加最大宽度 */
-    height: auto;
-    padding: 30px; /* 增加内边距 */
-    box-sizing: border-box;
-    color: white; /* 文字颜色使其在背景上更清晰 */
-    z-index: 5; /* 确保在轮播区域上方 */
-    transform: translate(-50%, -50%); /* 将内容区域居中 */
-    background: rgba(0, 0, 0, 0.7); /* 半透明背景 */
-    border-radius: 15px; /* 圆角矩形框 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 增强投影效果 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-.content h2 {
-    color: #fff;
-    margin-bottom: 20px;
-    font-size: 2rem; /* 增大字体 */
-    text-align: center; /* 确保标题居中 */
-}
-
-.upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.upload-section input[type="file"] {
-    padding: 12px; /* 增加内边距 */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 20px; /* 增加下边距，使文件输入框和按钮之间有间隔 */
-}
-
-.upload-section button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px; /* 增加内边距 */
-    border: none;
-    border-radius: 22px;
-    cursor: pointer;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* 确保按钮宽度与输入框一致 */
-    font-size: 1rem; /* 增大字体 */
-}
-
-.upload-section button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-}
-
-.upload-section img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-top: 20px;
-}
 
 /* 底部样式 */
 footer {
