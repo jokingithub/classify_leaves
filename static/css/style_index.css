@@ -161,12 +161,13 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 2px;
+    padding: 1px;
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: 99.%;
     z-index: 5; /* 确保在轮播区域上方 */
 }
+
 
 /* 媒体查询：1920*1080 缩放比125% */
 @media (max-width: 1536px) {
@@ -176,83 +177,52 @@ footer {
         padding: 10px; /* 增加内边距 */
         box-sizing: border-box;
     }
-    .carousel-title {
-        top: 90px; /* 调整标题距离顶部的距离 */
-        font-size: 8vw; /* 设置大字标题的字体大小 */
-    }
-    footer {
-        padding: 1px;
-    }
-
     .upload-section button {
         padding:10px 20px; /* 增加内边距 */
         margin-top: 1px;
-    }
-    
-    .imgbox {
-        height: 75vh; /* 设置高度，适应视口 */
-    }
-    
-
-    .upload-section input[type="file"] {
-        width: auto;
-    }
-
-    .upload-section button {
-        width: 100%;
     }
 }
 
 /* 媒体查询：平板设备横屏模式 1366*1024 */
 @media (max-width: 1366px) {
-    .imgbox {
-        height: 80vh; /* 设置高度，适应视口 */
-    }
-    .content {
-        top: 80%; /* 调整内容区域的位置，距离轮播区域底部 */
-    }
-    .carousel-title {
-        position: absolute;
-        top: 20%; /* 调整标题距离顶部的距离 */
-        font-size: 12vw; /* 设置大字标题的字体大小 */
-    }
-}
-
-/* 媒体查询：平板设备 1024*1366 */
-@media (max-width: 1024px) {
-    .imgbox {
-        height: 85vh; /* 设置高度，适应视口 */
-    }
-    .content {
-        top: 960px; /* 调整内容区域的位置，距离轮播区域底部 */
-    }
-    .carousel-title {
-        position: absolute;
-        top: 20%; /* 调整标题距离顶部的距离 */
-        font-size: 12vw; /* 设置大字标题的字体大小 */
-    }
-}
-
-/* 媒体查询：手机设备 430*932 */
-@media (max-width: 500px) {
-    /* 头部样式 */
-    header {
-        padding: 0.01%;
+    footer {
+        width: 99.7%;
     }
 
-
-    .imgbox {
-        width: 100%;
-        height: 82vh; /* 设置高度，适应视口 */
-    }
     .content {
         top: 700px; /* 调整内容区域的位置，距离轮播区域底部 */
-        padding: 5px; /* 增加内边距 */
+        padding: 10px; /* 增加内边距 */
     }
+    .content h2 {
+        font-size: 1.5rem; /* 增大字体 */
+    }
+    
     .carousel-title {
         position: absolute;
         top: 20%; /* 调整标题距离顶部的距离 */
         font-size: 12vw; /* 设置大字标题的字体大小 */
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    footer {
+        width: 99.7%;
+    }
+}
+
+
+
+@media (max-width: 720px) {
+    footer {
+        width: 99.4%;
+    }
+}
+
+@media (max-width: 600px) {
+    footer {
+        width: 99.1%;
     }
 }
 
