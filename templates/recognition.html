@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>树叶识别</title>
-    <link rel="stylesheet" href="/static/style_index.css"> <!-- 确保路径正确 -->
+    <link rel="stylesheet" href="/static/recog_styles.css"> <!-- 引用外部CSS文件 -->
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -13,6 +14,7 @@
         </div>
     </header>
 
+    <!--顶部导航栏-->
     <nav>
         <div class="container">
             <a href="/index.html">首页</a> <!-- 使用 Flask 路由 -->
@@ -22,30 +24,30 @@
         </div>
     </nav>
 
-    <div class="container content">
-        <h2>请上传树叶图片进行识别</h2>
-        <div class="upload-section">
+    <!--识别主体部分-->
+    <div class="main_content">
+        <div class="img_select_btn">
             <input type="file" id="leafImage" accept="image/*">
-
-            <label for='model'>选择模型：</label>
-            <select id='model'>
+        </div>
+        <div class="model_select_btn">
+            <select id="model">
                 <option value="YOLO">YOLOv8</option>
                 <option value="ResNet">ResNet50</option>
             </select>
-
-            <button id="submitBtn">提交</button>
         </div>
-
-        <div id="result" class="result-section">
-            <h3>预测结果：</h3>
-            <p id="prediction"></p>
-            <img id="uploadedImage" src="" alt="上传的图片" style="max-width: 100%; height: auto; display: none;">
+        <div class="submit_btn">
+            <button id="submitBtn">开始识别</button>
         </div>
     </div>
     
-
+    <div id="result" class="result-section">
+        <h3>预测结果：</h3>
+        <p id="prediction"></p>
+        <img id="uploadedImage" src="" alt="上传的图片" style="max-width: 100%; height: auto; display: none;">
+    </div>
     
 
+    <!--底部栏-->
     <footer>
         <p>&copy; 2024 树叶识别系统 版权所有</p>
     </footer>
@@ -68,7 +70,7 @@
 
                 var formData = new FormData();
                 formData.append('leafImage', file);
-                formData.append('model',modelInput.value);
+                formData.append('model', modelInput.value);
 
                 // 向服务器发送图像文件并获取预测结果
                 fetch('/upload', {
@@ -77,12 +79,11 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                     // 解析并显示结果
+                    // 解析并显示结果
                     var resultElement = document.getElementById('prediction');
-                    var parsedData = JSON.parse(data);
                     
-                    if (Array.isArray(parsedData) && parsedData.length > 0) {
-                        var result = parsedData[0];
+                    if (Array.isArray(data) && data.length > 0) {
+                        var result = data[0];
                         resultElement.innerHTML = `<strong>类别：</strong>${result.name}<br><strong>置信度：</strong>${(result.confidence * 100).toFixed(2)}%`;
                     } else {
                         resultElement.innerText = '没有检测到结果。';
