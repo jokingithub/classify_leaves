@@ -161,8 +161,8 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
-    position: fixed;
+    padding: 2px;
+    position: relative;
     bottom: 0;
     width: 100%;
     z-index: 5; /* 确保在轮播区域上方 */
