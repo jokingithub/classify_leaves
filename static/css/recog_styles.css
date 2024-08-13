@@ -209,7 +209,8 @@ nav a:hover {
     flex-direction: column;    /* 子元素水平排列 */
     align-items: center; /* 垂直方向上靠左侧对齐 */
     justify-content: center;    /* 垂直居中 */
-    min-width: 40%;        /* 最大宽度为100%，占满容器宽度 */
+    min-width: 40%;
+    max-width: 40%;     /*锁死最大宽度40%！！！！！！*/
 
     position: relative;   /* 相对定位，用于控制子元素 */
     overflow: hidden;     /* 确保超出部分被裁剪 */

@@ -92,8 +92,6 @@ def upload():
             # 查询类别介绍信息
             if 'name' in res_dict:
                 category_name = res_dict['name']
-                """
-                数据库部分
                 category_info = LeafCategory.query.filter_by(category_name=category_name).first()
                 if category_info:
                     res_dict['chinese_name'] = category_info.chinese_name
@@ -101,10 +99,7 @@ def upload():
                 else:
                     res_dict['chinese_name'] = "未定义"
                     res_dict['description'] = "没有找到该类别的描述信息"
-                """
-                res_dict['chinese_name'] = "未定义"
-                res_dict['description'] = "没有找到该类别的描述信息"
-
+            print(res_dict)
             # 返回结果
             return jsonify(res_dict)
         except Exception as e:
