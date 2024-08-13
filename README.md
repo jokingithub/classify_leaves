@@ -10,8 +10,17 @@ classify_leaves
  | |__ResNet50_model.pth  #ResNet模型文件  
  | |__ResNet_labelmap.json #ResNet标签字典 
  |  
+ |__instance  #数据库  
+ |  
  |__static  
- | |__style_index.css    #css样式  
+ | |__css    #css样式  
+ | | |__style_index.css  
+ | | |__recog_styles.css  
+ | |_imgs   #图片资源  
+ | | |__...  
+ | |__js    #脚本文件  
+ |   |__imgshow.js  #主界面轮播图脚本  
+ |   |__model-select-btn.js #模型选择按钮脚本  
  |  
  |__templates    #模板  
  |  |__index.html   #主页  
@@ -29,6 +38,9 @@ classify_leaves
  |  
  |__train  
  | |__yolo_train.py #YOLO训练函数  
+ | |__ResNet_train.ipynb # ResNet训练函数  
+ |  
+ |__init_database.py # 数据库初始化与加载函数  
  |  
  |__requirements.txt  
  |  
@@ -66,15 +78,18 @@ pip install -r requirements.txt
 ## 项目运行
  ### Windows 系统
 ```bash
+python ./init_database.py  # 初始化数据库
 python start.py
 ```
 
 ### Linux 系统
 ```bash
+python3 ./init_database.py  # 初始化数据库
 python3 ./start.py
 ```
 
 ## 目录说明:
+instance: 数据库。
 model: 存储训练好的模型权重文件。  
 static: 包含静态资源，如 CSS 样式文件。  
 templates: 存储 HTML 模板文件。  
@@ -85,6 +100,7 @@ uploads: 用户上传图像的存储目录。
 requirements.txt: 项目依赖的 Python 库列表。  
 YOLOv8_predict_api.py: YOLOv8 模型的预测接口。  
 ResNet50_Predict.py: ResNet50 模型的预测接口。  
+init_database.py: 项目数据库初始化。
 start.py: 项目的启动脚本。  
   
 ## 数据集来源
