@@ -47,6 +47,11 @@ def about():
 def recognition():
     return render_template('recognition.html')
 
+@app.route('/contact.html', methods=['GET'])
+def contact():
+    return render_template('contact.html')
+
+
 
 @app.route('/upload', methods=['POST'])
 def upload():
