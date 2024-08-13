@@ -39,11 +39,15 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+@app.route('/about.html', methods=['GET'])
+def about():
+    return render_template('about.html')
+
 @app.route('/recognition.html', methods=['GET'])
 def recognition():
     return render_template('recognition.html')
 
-@app.route('/upload', methods=['POST'])
+
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'leafImage' not in request.files:
@@ -72,8 +76,8 @@ def upload():
                 return abort(400, description="不支持的模型类型")
             
             # 查询类别介绍信息
-            if 'category' in result:
-                category_name = result['category']
+            if 'name' in result:
+                category_name = result['name']
                 category_info = LeafCategory.query.filter_by(category_name=category_name).first()
                 if category_info:
                     result['chinese_name'] = category_info.chinese_name
