@@ -1,7 +1,8 @@
 /* 基本样式 */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: url('../imgs/8.jpg') no-repeat center center fixed;
+    background-size: cover; /* 确保背景图片覆盖整个页面 */
     margin: 0;
     padding: 0;
 }
@@ -10,7 +11,7 @@ body {
 header {
     background-color: #09743c;
     color: white;
-    padding: 15px 0;
+    padding: 1px 0;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -42,81 +43,220 @@ nav a:hover {
 }
 
 /* 识别图片主体 */  
-.main_content {  
-    background-color: #ffffff; /* 背景色设置为白色以提升对比度 */
-    display: flex;
-    justify-content: flex-end;  /* 确保内容靠右对齐 */
-    padding: 20px;
-    gap: 15px; /* 为按钮间添加统一的间隔 */
-}
-
-/* 按钮容器样式 */
-.img_select_btn, .model_select_btn, .submit_btn {
+.main_content { 
+    background-color: #ffffff00; /* 背景色设置为白色以提升对比度 */
     display: flex;
     align-items: center;
-    background-color: #4CAF50; /* 使用相同的背景颜色 */
-    border: none;
-    border-radius: 22px; /* 圆角 */
-    padding: 10px 15px; /* 内边距 */
-    color: white;
-    cursor: pointer;    
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease; /* 平滑的背景色和缩放过渡 */
-    font-size: 1rem;
-}
-
-.img_select_btn:hover, .model_select_btn:hover, .submit_btn:hover {
-    background-color: #45a049; /* 悬停时的背景色 */
-    transform: scale(1.05); /* 悬停时放大 */
-}
-
-.img_select_btn label, .model_select_btn label {
-    margin-right: 10px; /* 标签与按钮之间的间距 */
-}
-
-/* 隐藏原生的 input 和 select */
-.img_select_btn input[type="file"], 
-.model_select_btn select {
-    border: none;
-    background: transparent;
+    justify-content: flex-end;  /* 确保内容靠右对齐 */
     padding: 5px;
-    cursor: pointer;
-    /* 确保 label 的宽度符合按钮 */
-    width: 100%;
+    gap: 25px; /* 为按钮间添加统一的间隔 */
+
+    margin-right: 1%;
 }
 
-/* 提交按钮样式 */
-.submit_btn button {
-    background-color: transparent;
-    color: inherit;
-    padding: 0;
+/* 文件上传按钮样式start */
+/* 自定义按钮样式，继承自 .img_select_btn */
+.custom-file-button {
+    background-color: #45a049; /* 与 .img_select_btn 相同的背景色 */
     border: none;
-    border-radius: 22px;
-    cursor: pointer;    
-    box-shadow: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-    font-size: inherit;
+    font-size: 1rem;
+    text-align: center; /* 确保文本居中 */
+    margin: 5px;
+}
+/* 按钮悬停效果 */
+.main_content .custom-file-button:hover{
+    background-color: #3e8e41;
+    transform: scale(1.02);
+}
+/* 按钮点击效果 */
+.custom-file-button:active {
+    background-color: #3e8e41;
+    box-shadow: none;
+}
+/* 文件上传按钮样式end */
+
+
+/* 开始识别按钮样式 start*/
+.submit_btn {
+    background-color: #45a049; /* 背景颜色 */
+    border: none;
+    border-radius: 15px; /* 圆角 */
+    padding: 10px 15px; /* 内边距 */
+    color: white; /* 文字颜色 */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影 */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
+    font-size: 1rem;
+    margin: 0px; /* 外边距，根据需要调整 */
+    text-align: center; /* 文本居中 */
+}
+/* 按钮悬停效果 */
+.main_content .submit_btn:hover {
+    background-color: #3e8e41; /* 悬停时的背景色 */
+    transform: scale(1.2);
 }
 
-/* 提交按钮悬停效果 */
-.submit_btn button:hover {
-    background-color: #45a049;
+/* 按钮点击效果 */
+.main_content .submit_btn:active {
+    background-color: #3e8e41; /* 点击时的背景色 */
+    box-shadow: none; /* 移除阴影 */
+}
+/* 开始识别按钮样式 end*/
+
+/* 模型选择部分样式 */ 
+/* 自定义下拉菜单的容器样式 */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    background-color: #45a049; /* 深绿色背景 */
+    border-radius: 15px; /* 圆角边框 */
+    padding: 10px 15px; /* 内边距 */
+    font-size: 1rem;
+    color: white; /* 文字颜色 */
+    cursor: pointer;
+    user-select: none; /* 防止用户选择文本 */
+}
+.custom-dropdown:hover{
+    background-color: #3e8e41;
+    transition: background-color 0.6s;
+}
+
+/* 选中的选项样式 */
+.selected-option {
+    pointer-events: none; /* 防止干扰点击事件 */
+}
+
+/* 下拉选项列表样式 */
+.options-list {
+    list-style: none;
+    top: 100%;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #0a914b;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, max-height 0.5s ease;
+}
+
+.options-list.visible {
+    opacity: 1;
+    max-height: 200px;
+    visibility: visible;
+}
+
+/* 下拉选项样式 */
+.options-list li {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* 悬停效果 */
+.options-list li:hover {
+    background-color: #0a6f40; /* 悬停时的背景色 */
     transform: scale(1.05);
 }
 
-/* 结果区域 */
-.result-section {
-    margin: 20px auto;
-    max-width: 800px;
-    text-align: center;
+/* 显示下拉列表 */
+.custom-dropdown.open .options-list {
+    display: block;
 }
 
-.result-section img {
-    max-width: 100%;
-    height: auto;
+/* 下拉菜单打开时的动画 */
+.custom-dropdown.open .options-list {
     display: block;
-    margin: 0 auto;
+    opacity: 1;
+    visibility: visible;
 }
+
+/* 下拉选项悬停效果 */
+.options-list li:hover {
+    background-color: #0a6f40; /* 悬停时的背景色 */
+    transform: scale(1.05); /* 轻微放大选项 */
+}
+/* 模型选择部分样式 */
+
+
+/* 结果容器样式 */
+/* 结果容器样式 */
+.result-container {
+    color: white;
+    display: flex;          /* 使用Flexbox布局 */
+    flex-direction: row;    /* 子元素水平排列 */
+    margin-left: 40px;           /* 外边距 */
+    margin-top: 2%;
+    max-width: 100%;        /* 最大宽度为100%，占满容器宽度 */
+}
+
+.image-container {
+    display: flex;          /* 使用Flexbox布局 */
+    flex-direction: column;    /* 子元素水平排列 */
+    align-items: center; /* 垂直方向上靠左侧对齐 */
+    justify-content: center;    /* 垂直居中 */
+    min-width: 40%;        /* 最大宽度为100%，占满容器宽度 */
+
+    position: relative;   /* 相对定位，用于控制子元素 */
+    overflow: hidden;     /* 确保超出部分被裁剪 */
+    padding: 20px;        /* 内边距 */
+
+    background: rgba(0, 0, 0, 0.7); /* 半透明背景 */
+    border-radius: 40px; /* 圆角矩形框 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 增强投影效果 */
+}
+
+/* 固定大小的图片样式 */
+.fixed-image {
+    width: 400px; /* 固定宽度，根据需要调整 */
+    height: 300px; /* 保持宽高比 */
+    object-fit: cover;
+    margin-top: 10%;
+    margin-bottom: 20px; /* 与简短结果文本的间隔 */
+}
+
+/* 结果区域简短信息样式 */
+.result-section-short {
+    text-align: center; /* 文本居中 */
+
+}
+
+/* 结果区域详细描述样式 */
+.result-section-detail {
+    flex: 1; /* 详细描述占据剩余空间 */
+    padding: 0 20px; /* 与左右边缘的间隔 */
+    margin: 4%;
+
+    background: rgba(0, 0, 0, 0.7); /* 半透明背景 */
+    border-radius: 40px; /* 圆角矩形框 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 增强投影效果 */
+}
+
+/* 确保图片在结果区域的左侧 */
+#uploadedImage {
+    text-align: center; /* 结果文本居中对齐 */
+}
+
+/* 简短结果和详细结果的公共样式 */
+.result-section, .result-section-short, .result-section-detail {
+    text-align: center;       /* 结果文本左对齐 */
+    /* 如果需要在结果区域内也有间距，可以添加 padding */
+}
+
 
 /* 底部样式 */
 footer {
@@ -145,80 +285,7 @@ footer {
     outline: none; /* 去掉轮廓 */
 }
 
-/* 自定义下拉菜单的容器样式 */
-.custom-dropdown {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #45a049; /* 深绿色背景 */
-    border-radius: 15px; /* 圆角边框 */
-    padding: 10px 15px; /* 内边距 */
-    font-size: 1rem;
-    color: white; /* 文字颜色 */
-    cursor: pointer;
-    user-select: none; /* 防止用户选择文本 */
-}
 
-/* 选中的选项样式 */
-.selected-option {
-    pointer-events: none; /* 防止干扰点击事件 */
-}
-
-/* 下拉选项列表样式 */
-.options-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: #0a914b; /* 与容器相同的背景色 */
-    display: none; /* 默认隐藏 */
-    position: absolute;
-    width: 100%;
-
-    box-shadow: 0 8px 16px rgba(0,0,0,0.25); /* 添加阴影以提升层次感 */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-
-    top: 100%;
-    left: 0;
-}
-
-.options-list.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 下拉选项样式 */
-.options-list li {
-    color: white;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-/* 悬停效果 */
-.options-list li:hover {
-    background-color: #0a6f40; /* 悬停时的背景色 */
-}
-
-/* 显示下拉列表 */
-.custom-dropdown.open .options-list {
-    display: block;
-}
-
-/* 下拉菜单打开时的动画 */
-.custom-dropdown.open .options-list {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 下拉选项悬停效果 */
-.options-list li:hover {
-    background-color: #0a6f40; /* 悬停时的背景色 */
-    transform: scale(1.05); /* 轻微放大选项 */
-}
 
 /* 媒体查询 */
 @media (max-width: 1536px) {
