@@ -43,7 +43,7 @@ nav a:hover {
 }
 
 /* 识别图片主体 */  
-.main_content { 
+.main_content {
     background-color: #ffffff00; /* 背景色设置为白色以提升对比度 */
     display: flex;
     align-items: center;
@@ -247,14 +247,13 @@ nav a:hover {
     color: #fff; /* 文字颜色为白色 */
 }
 
-/* 标题样式 */
+/* result-short标题样式 */
 .result-section-short .label {
     font-weight: bold; /* 加粗 */
     font-size: 18px; /* 字体大小 */
     color: #fff; /* 标题文字颜色为白色 */
 }
-
-/* 内容样式 */
+/* result-short内容样式 */
 .result-section-short p {
     margin: 0; /* 去掉段落默认的外边距 */
     line-height: 2.0; /* 行高 */
@@ -266,60 +265,27 @@ nav a:hover {
     flex: 1; /* 详细描述占据剩余空间 */
     padding: 0 20px; /* 与左右边缘的间隔 */
     margin: 4%; /* 外边距 */
+    text-align: left;
 
     background: rgba(0, 0, 0, 0.7); /* 半透明背景 */
     border-radius: 20px; /* 圆角矩形框 */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 增强投影效果 */
 }
-
-/* 样式化文本内容 */
-#detailedPrediction {
-    line-height: 1.8; /* 行高增加，提高可读性 */
-    font-size: 18px; /* 设置合适的字体大小 */
-    color: #ffffff; /* 设置字体颜色为白色 */
-    margin-top: 20px; /* 顶部边距 */
-    text-align: left; /* 左对齐 */
+/* 标题样式 */
+.result-section-detail .label {
+    font-weight: bold; /* 加粗 */
+    font-size: 18px; /* 字体大小 */
+    color: #fff; /* 标题文字颜色为白色 */
 }
-
-/* 样式化标题 */
-#detailedPrediction h2 {
-    font-size: 22px; /* 设置标题字体大小 */
-    font-weight: bold; /* 加粗标题 */
-    color: #00aaff; /* 设置标题字体颜色 */
-    margin-bottom: 15px; /* 标题下边距 */
-    border-bottom: 2px solid #00aaff; /* 添加底部边框以突出标题 */
-    padding-bottom: 10px; /* 标题下内边距 */
+/* 内容样式 */
+.result-section-detail p {
+    margin: 5%; /* 去掉段落默认的外边距 */
+    line-height: 2.0; /* 行高 */
 }
-
-/* 样式化段落 */
-#detailedPrediction p {
-    margin-bottom: 20px; /* 段落下边距 */
-    text-align: justify; /* 段落对齐方式 */
-}
-
-/* 样式化列表 */
-#detailedPrediction ul {
-    margin-left: 20px; /* 列表左边距 */
-    padding-left: 20px; /* 列表左内边距 */
-    list-style-type: disc; /* 使用圆点符号 */
-}
-
-/* 样式化列表项 */
-#detailedPrediction li {
-    margin-bottom: 10px; /* 列表项下边距 */
-}
-
-
 
 /* 确保图片在结果区域的左侧 */
 #uploadedImage {
     text-align: center; /* 结果文本居中对齐 */
-}
-
-/* 简短结果和详细结果的公共样式 */
-.result-section, .result-section-short, .result-section-detail {
-    text-align: center;       /* 结果文本左对齐 */
-    /* 如果需要在结果区域内也有间距，可以添加 padding */
 }
 
 
@@ -328,7 +294,7 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 1px;
     position: fixed;
     bottom: 0;
     width: 100%;
