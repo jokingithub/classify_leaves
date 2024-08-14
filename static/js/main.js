@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // 禁用按钮以防止重复点击
+        submitButton.disabled = true;
+
         // 处理图片上传
         handleImageUpload(file)
             .then(url => {
@@ -70,8 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 解析并显示结果
                 console.log(data)
                 if (data && typeof data === 'object') {
-                    resultSectionShort.textContent = data.name || '没有简短结果。';
-                    resultSectionDetail.textContent = data.detailedDescription || '没有详细描述。';
+                    var name = data.name || '未定义名称';
+                    var chineseName = data.chinese_name || '未定义中文名称';
+                    var className = data.class !== undefined ? data.class : '未定义分类';
+                    var confidence = data.confidence !== undefined ? data.confidence : '未定义置信度';
+                    var description = data.description || '没有详细描述。';
+
+                    resultSectionShort.innerHTML = `
+                        <p><strong>名称:</strong> ${name}</p>
+                        <p><strong>中文名称:</strong> ${chineseName}</p>
+                        <p><strong>分类:</strong> ${className}</p>
+                        <p><strong>置信度:</strong> ${confidence}</p>
+                    `;
+
+                    // 格式化描述内容
+                    var formattedDescription = formatDescription(description);
+                    resultSectionDetail.innerHTML = formattedDescription;
                 } else {
                     resultSectionShort.textContent = '返回的数据格式无效。';
                     resultSectionDetail.textContent = '';
@@ -81,6 +98,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultSectionShort.textContent = '识别失败：' + error.message;
                 resultSectionDetail.textContent = '';
                 console.error('识别失败:', error);
+            })
+            .finally(() => {
+                // 重新启用按钮
+                submitButton.disabled = false;
             });
+        function formatDescription(description) {
+        // 将换行符替换为 <br> 标签
+        var formattedText = description.replace(/\n/g, '<br>');
+
+        // 动态添加标题和列表（可选）
+        formattedText = formattedText.replace(/基本信息：/g, '<h2>基本信息：</h2>');
+        formattedText = formattedText.replace(/特征：/g, '<h2>特征：</h2>');
+        formattedText = formattedText.replace(/分布：/g, '<h2>分布：</h2>');
+        formattedText = formattedText.replace(/用途：/g, '<h2>用途：</h2>');
+
+        // 将文本中的“特征：”、“分布：”等内容转换为段落
+        formattedText = formattedText.replace(/(特征：|分布：|用途：)/g, '<p>$1</p>');
+        formattedText = formattedText.replace(/(\d+)\./g, '<li>$1</li>');
+
+        return formattedText;
+    }
     });
 });
