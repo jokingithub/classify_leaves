@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, abort, jsonify
+from flask import Flask, request, render_template, abort, jsonify,redirect
 from flask_sqlalchemy import SQLAlchemy
 import YOLOv8_predict_api as YOLO
 import ResNet50_Predict as Res
@@ -54,6 +54,9 @@ def contact():
     return render_template('contact.html')
 
 
+@app.route('/')
+def get_redirect():
+    return redirect('/index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload():
