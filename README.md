@@ -50,6 +50,8 @@ classify_leaves
  |  
  |__start.py #启动函数  
  |  
+ |__start__all.py #数据库初始化与框架启动函数  
+ |  
  |__README.md  
 
 ## 框架:  
@@ -78,14 +80,12 @@ pip install -r requirements.txt
 ## 项目运行
  ### Windows 系统
 ```bash
-python ./init_database.py  # 初始化数据库
-python start.py
+python start_all.py
 ```
 
 ### Linux 系统
 ```bash
-python3 ./init_database.py  # 初始化数据库
-python3 ./start.py
+python3 ./start_all.py
 ```
 
 ## 目录说明:
@@ -102,6 +102,7 @@ YOLOv8_predict_api.py: YOLOv8 模型的预测接口。
 ResNet50_Predict.py: ResNet50 模型的预测接口。  
 init_database.py: 项目数据库初始化。
 start.py: 项目的启动脚本。  
+start_all.py: 项目的启动脚本(包含数据库初始化和启动Flask框架)。 
   
 ## 数据集来源
 该项目的数据集来源于 Kaggle 竞赛树叶分类。任务是预测叶子图像的类别。数据集包含 176 个类别、18353 张训练图像、8800 张测试图像。评估指标为分类准确度。
