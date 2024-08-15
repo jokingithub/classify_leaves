@@ -116,6 +116,38 @@ nav a:hover {
 }
 /* 开始识别按钮样式 end*/
 
+/* 加载动画容器样式 */
+.loading-indicator {
+    position: fixed; /* 固定在页面上 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    display: none; /* 默认隐藏 */
+    justify-content: center; /* 居中对齐 */
+    align-items: center; /* 垂直居中对齐 */
+    z-index: 1000; /* 确保在其他内容之上 */
+}
+
+/* 旋转的动画效果 */
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1); /* 浅色背景 */
+    border-left: 8px solid #45a049; /* 深绿色背景 */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* 旋转动画 */
+}
+
+/* 旋转动画的关键帧 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
 /* 模型选择部分样式 */ 
 /* 自定义下拉菜单的容器样式 */
 .custom-dropdown {
@@ -225,7 +257,7 @@ nav a:hover {
 
     position: relative;   /* 相对定位，用于控制子元素 */
     overflow: hidden;     /* 确保超出部分被裁剪 */
-    padding: 20px;        /* 内边距 */
+    padding: 0px;        /* 内边距 */
 
     background: rgba(0, 0, 0, 0.7); /* 半透明背景 */
     border-radius: 40px; /* 圆角矩形框 */
@@ -237,7 +269,7 @@ nav a:hover {
     width: 400px; /* 固定宽度，根据需要调整 */
     height: 300px; /* 保持宽高比 */
     object-fit: cover;
-    margin-top: 10%;
+    margin: 5%;
     margin-bottom: 20px; /* 与简短结果文本的间隔 */
 }
 
@@ -280,6 +312,7 @@ nav a:hover {
     margin: 5%; /* 去掉段落默认的外边距 */
     line-height: 2.0; /* 行高 */
 }
+
 
 /* 确保图片在结果区域的左侧 */
 #uploadedImage {
