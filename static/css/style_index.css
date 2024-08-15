@@ -79,11 +79,12 @@ nav a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover; /* 更适合做背景图 */
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
 .carousel img.hidden {
     opacity: 0;
+    transform: scale(1.05); /* 添加缩放效果 */
 }
 
 /* 内容区域样式 */
