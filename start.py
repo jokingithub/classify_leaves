@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template, jsonify, redirect, send_file
+from flask import Flask, request, render_template, jsonify, redirect, send_file, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_session import Session
 import YOLOv8_predict_api as YOLO
 import ResNet50_Predict as Res
 from werkzeug.utils import secure_filename
@@ -11,6 +12,9 @@ app = Flask(__name__,
             template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///leaves_database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'your_secret_key'  # 设置一个密钥，用于加密 session
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)  # 初始化 Flask-Session
 
 # 数据库初始化
 DB = SQLAlchemy(app)
@@ -119,6 +123,8 @@ def about():
 
 @app.route('/admin.html', methods=['GET'])
 def admin():
+    if 'logged_in' not in session:
+        return redirect('/login.html')
     categories = LeafCategory.query.all()
     return render_template('admin.html', categories=categories)
 
@@ -147,6 +153,22 @@ def contact():
 @app.route('/thank_you.html', methods=['GET'])
 def thank_you():
     return render_template('thank_you.html')
+
+# 路由：登录页面
+@app.route('/login.html', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # 用户验证逻辑（示例：硬编码的用户名和密码）
+        if username == 'admin' and password == 'password':  # 只是示例，请用更安全的方法处理密码
+            session['logged_in'] = True
+            return redirect('/admin.html')
+        else:
+            return jsonify({'error': '无效的用户名或密码'}), 401
+
+    return render_template('login.html')
 
 # 路由：文件上传与预测
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
