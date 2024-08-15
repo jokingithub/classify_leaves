@@ -1,50 +1,123 @@
-class LeafCategory(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    category_name = DB.Column(DB.String(50), unique=True, nullable=False)
-    chinese_name = DB.Column(DB.String(50), nullable=False)
-    description = DB.Column(DB.Text, nullable=False)
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树叶识别系统后台管理</title>
+    <link rel="stylesheet" href="../static/css/admin_style.css">
+    <link rel="icon" href="../static/imgs/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>后台管理</h1>
+        </div>
+    </header>
 
-class Feedback(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    name = DB.Column(DB.String(50), nullable=False)
-    email = DB.Column(DB.String(120), nullable=False)
-    message = DB.Column(DB.Text, nullable=False)
-    reg_date = DB.Column(DB.DateTime, default=DB.func.current_timestamp())
+    <nav>
+        <div class="container">
+            <a href="./index.html">首页</a>
+            <a href="./about.html">关于</a>
+            <a href="./recognition.html">识别</a>
+            <a href="./contact.html">联系</a>
+            <a href="./admin.html">后台管理</a>
+        </div>
+    </nav>
 
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    if request.method == 'POST':
-        action = request.form['action']
-        if action == 'add_category':
-            category_name = request.form['category_name']
-            chinese_name = request.form['chinese_name']
-            description = request.form['description']
-            new_category = LeafCategory(
-                category_name=category_name,
-                chinese_name=chinese_name,
-                description=description
-            )
-            DB.session.add(new_category)
-            DB.session.commit()
-        elif action == 'delete_category':
-            category_id = request.form['category_id']
-            category = LeafCategory.query.get(category_id)
-            if category:
-                DB.session.delete(category)
-                DB.session.commit()
-        elif action == 'export_feedback':
-            export_feedback_to_csv()
+    <div class="admin-container">
+        <h2>管理界面</h2>
+        
+        <div class="admin-section">
+            <h3>用户反馈</h3>
+            <button onclick="exportFeedback()">导出反馈数据</button>
+        </div>
+        
+        <div class="admin-section">
+            <h3>树叶类别管理</h3>
+            
+            <!-- 表单用于添加新的树叶类别 -->
+            <form id="categoryForm" action="/add_category" method="POST">
+                <label for="category_name">类别名:</label>
+                <input type="text" id="category_name" name="category_name" required>
+                <br><br>
+                <label for="chinese_name">中文名:</label>
+                <input type="text" id="chinese_name" name="chinese_name" required>
+                <br><br>
+                <label for="description">描述:</label>
+                <textarea id="description" name="description" rows="3" required></textarea>
+                <br><br>
+                <button type="submit">添加类别</button>
+            </form>
+            
+            <!-- 显示现有类别的表格 -->
+            <table id="categoryTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>类别名</th>
+                        <th>中文名</th>
+                        <th>描述</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 这里将动态填充类别数据 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    categories = LeafCategory.query.all()
-    feedbacks = Feedback.query.all()
-    return render_template('admin.html', categories=categories, feedbacks=feedbacks)
+    <footer>
+        <p>&copy; 2024 树叶识别系统 版权所有</p>
+    </footer>
 
-def export_feedback_to_csv():
-    with app.app_context():
-        export_path = './instance/feedback.csv'
-        feedbacks = Feedback.query.all()
-        with open(export_path, 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(['ID', 'Name', 'Email', 'Message', 'Date'])
-            for feedback in feedbacks:
-                writer.writerow([feedback.id, feedback.name, feedback.email, feedback.message, feedback.reg_date])
+    <script>
+        function exportFeedback() {
+            window.location.href = '/export_feedback';
+        }
+
+        // 初始化表格
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchCategories();
+        });
+
+        function fetchCategories() {
+            fetch('/categories')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#categoryTable tbody');
+                    tableBody.innerHTML = '';  // 清空表格内容
+                    data.forEach(category => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${category.id}</td>
+                            <td>${category.category_name}</td>
+                            <td>${category.chinese_name}</td>
+                            <td>${category.description}</td>
+                            <td>
+                                <button onclick="editCategory(${category.id})">编辑</button>
+                                <button onclick="deleteCategory(${category.id})">删除</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        function editCategory(id) {
+            // 处理编辑类别的逻辑
+        }
+
+        function deleteCategory(id) {
+            // 发送删除请求
+            fetch(`/delete_category/${id}`, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    fetchCategories();  // 重新获取类别列表
+                }
+            });
+        }
+    </script>
+</body>
+</html>
