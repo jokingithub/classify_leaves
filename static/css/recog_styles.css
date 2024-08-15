@@ -93,7 +93,7 @@ nav a:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影 */
     transition: background-color 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
     font-size: 1rem;
-    margin: 0px; /* 外边距，根据需要调整 */
+    margin: 5px; /* 外边距，根据需要调整 */
     text-align: center; /* 文本居中 */
 }
 
@@ -153,6 +153,9 @@ nav a:hover {
     width: 100%;
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
     
+    
+    z-index: 1000;
+
     opacity: 0;
     visibility: hidden;
     max-height: 0;
@@ -289,7 +292,7 @@ footer {
     color: white;
     text-align: center;
     padding: 1px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     z-index: 5;
@@ -334,19 +337,44 @@ footer {
     }
 }
 
-@media (max-width: 500px) {
-    .img_select_btn, .model_select_btn, .submit_btn {
-        margin: 5px 0;
-        width: 100%;
+/* 小屏幕时的样式 */
+@media screen and (max-width: 1024px) {
+    .custom-dropdown.open .options-list {
+        display: block;
     }
     .result-container{
         flex-direction: column; 
         margin-left: 0;
     }
     .image-container{
+        margin:auto;
         align-items: center;
         justify-content: center;
-        min-width: 100%;
+        max-width: 300px;
+        position: relative;   /* 相对定位，用于控制子元素 */
+        overflow: hidden;     /* 确保超出部分被裁剪 */
+        padding: 10px;        /* 内边距 */
+    }
+    
+    .custom-dropdown {
+        width: auto;
+        margin: 5px;
+        padding: 5px 10px; /* 内边距 */
+    }
+    .custom-file-button{
+        padding: 8px 12px; /* 手机端更小的内边距 */
+        font-size: 0.9rem; /* 手机端更小的字体大小 */
+        /* 其他手机端特有的样式 */
+        width: auto; /* 根据内容自动调整宽度 */
+    }
+    .submit_btn {
+        padding: 8px 12px; /* 手机端更小的内边距 */
+        font-size: 0.9rem; /* 手机端更小的字体大小 */
+        /* 其他手机端特有的样式 */
+        width: auto; /* 根据内容自动调整宽度 */
+    }
+    .options-list {
+        width: auto; /* 确保下拉列表宽度与按钮一致 */
     }
 }
 

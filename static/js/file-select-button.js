@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 例如，显示文件名
         if (this.files && this.files.length > 0) {
             var fileName = this.files[0].name;
-            fileButton.textContent = '已选择: ' + fileName;
+            fileButton.textContent = '已选择';
         }
     });
 });
