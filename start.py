@@ -85,14 +85,14 @@ def contact():
         DB.session.add(feedback)
         DB.session.commit()
 
-        return redirect('/thank-you.html')
+        return redirect('/thank_you.html')
 
     return render_template('contact.html')
 
 
-@app.route('/thank-you.html', methods=['GET'])
+@app.route('/thank_you.html', methods=['GET'])
 def thank_you():
-    return '<h1>Thank you for your feedback!</h1>'
+    return render_template('thank_you.html')
 
 
 @app.route('/')
