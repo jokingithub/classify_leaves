@@ -66,3 +66,19 @@ header {
     color: red;
     margin-top: 10px;
 }
+/* 之前的样式可以保留，以下是新增样式 */
+
+/* 输入框组样式 */
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 占位符文本样式 */
+.login-container input::placeholder {
+    color: #a9a9a9;
+    font-size: 14px;
+}
+
+/* 其他样式可以保留，确保整体布局和美观性 */
