@@ -72,8 +72,9 @@ nav a:hover {
 
 
 .thank-you-container {
+    width: 50%;
     background-color: rgba(0, 0, 0, 0.7); /* 半透明背景 */
-    padding: 40px;
+    padding: 50px;
     border-radius: 10px 15px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
