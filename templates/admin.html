@@ -24,36 +24,13 @@
         </div>
     </nav>
 
-    <div class="admin-container">
-        <h2>管理界面</h2>
-        
-        <div class="admin-section">
-            <h3>用户反馈</h3>
-            <button onclick="exportFeedback()">导出反馈数据</button>
-        </div>
-        
-        <div class="admin-section">
-            <h3>树叶类别管理</h3>
-            
-            <!-- 表单用于添加新的树叶类别 -->
-            <form id="categoryForm" action="/add_category" method="POST">
-                <label for="category_name">类别名:</label>
-                <input type="text" id="category_name" name="category_name" required>
-                <br><br>
-                <label for="chinese_name">中文名:</label>
-                <input type="text" id="chinese_name" name="chinese_name" required>
-                <br><br>
-                <label for="description">描述:</label>
-                <textarea id="description" name="description" rows="3" required></textarea>
-                <br><br>
-                <button type="submit">添加类别</button>
-            </form>
-            
-            <!-- 显示现有类别的表格 -->
+    <div class="admin-wrapper">
+        <div class="info-section">
+            <!-- 左侧信息表格 -->
             <table id="categoryTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>序号</th>
                         <th>类别名</th>
                         <th>中文名</th>
                         <th>描述</th>
@@ -61,9 +38,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 这里将动态填充类别数据 -->
+                    <!-- 表格行将通过JavaScript动态添加 -->
                 </tbody>
             </table>
+        </div>
+    
+        <div class="management-section">
+            <h2>管理界面</h2>
+            
+            <div class="admin-section">
+                <h3>用户反馈</h3>
+                <button onclick="exportFeedback()">导出反馈数据</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>树叶类别管理</h3>
+                
+                <!-- 表单用于添加新的树叶类别 -->
+                <form id="categoryForm" action="/add_category" method="POST">
+                    <label for="category_name">类别名:</label>
+                    <input type="text" id="category_name" name="category_name" required>
+                    <br><br>
+                    <label for="chinese_name">中文名:</label>
+                    <input type="text" id="chinese_name" name="chinese_name" required>
+                    <br><br>
+                    <label for="description">描述:</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                    <br><br>
+                    <button type="submit">添加类别</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -71,53 +75,11 @@
         <p>&copy; 2024 树叶识别系统 版权所有</p>
     </footer>
 
-    <script>
-        function exportFeedback() {
-            window.location.href = '/export_feedback';
-        }
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
 
-        // 初始化表格
-        document.addEventListener("DOMContentLoaded", function() {
-            fetchCategories();
-        });
-
-        function fetchCategories() {
-            fetch('/categories')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.querySelector('#categoryTable tbody');
-                    tableBody.innerHTML = '';  // 清空表格内容
-                    data.forEach(category => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${category.id}</td>
-                            <td>${category.category_name}</td>
-                            <td>${category.chinese_name}</td>
-                            <td>${category.description}</td>
-                            <td>
-                                <button onclick="editCategory(${category.id})">编辑</button>
-                                <button onclick="deleteCategory(${category.id})">删除</button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                });
-        }
-
-        function editCategory(id) {
-            // 处理编辑类别的逻辑
-        }
-
-        function deleteCategory(id) {
-            // 发送删除请求
-            fetch(`/delete_category/${id}`, {
-                method: 'DELETE'
-            }).then(response => {
-                if (response.ok) {
-                    fetchCategories();  // 重新获取类别列表
-                }
-            });
-        }
-    </script>
+    <script src="../static/js/admin.js"></script>
 </body>
 </html>
