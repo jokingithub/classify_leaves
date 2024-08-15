@@ -1,2 +1,4 @@
 instance/
 uploads/
+flask_session/
+test/
